@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>引导页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			/*
+			 *样式文件
+			 **/
+			
+			body {
+				background-color: rgba(0, 0, 0, 0);
+			}
+			
+			.guide-img {
+				width: 100%;
+			}
+			
+			#start {
+				position: absolute;
+				bottom: 60px;
+				width: 60%;
+				left: 20%;
+				color: #fff;
+				height: 40px;
+				border-radius: 20px;
+			}
+			
+			#slider-dot {
+				bottom: 20px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group">
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/bgimg1.jpg">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/bgimg1.jpg">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="images/bgimg1.jpg">
+							<button class="mui-btn mui-btn-blue mui-btn-outlined" type="button" id="start">开始体验</button>
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator" id="slider-dot">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				/**
+				 * 获取系统状态栏高度
+				 * http://www.html5plus.org/doc/zh_cn/navigator.html#plus.navigator.getStatusbarHeight
+				 */
+				var sh = plus.navigator.getStatusbarHeight();
+				/**
+				 * 获取设备屏幕高度分辨率以及宽度分辨率
+				 * http://www.html5plus.org/doc/zh_cn/device.html#plus.screen.resolutionHeight
+				 * http://www.html5plus.org/doc/zh_cn/device.html#plus.screen.resolutionWidth
+				 */
+				var h = plus.screen.resolutionHeight;
+				var w = plus.screen.resolutionWidth;
+				/**
+				 * 设置图片高度，这里图片并不规范；
+				 * 实际开发中，建议大家制作iphone6plus规格的图片；
+				 */
+				var imgs = document.querySelectorAll(".guide-img");
+				for(var i = 0, len = imgs.length; i < len; i++) {
+					imgs[i].style.height = (h - sh) + "px";
+					imgs[i].style.width = w + "px";
+				}
+				/**
+				 * 手动关闭启动页
+				 * http://www.html5plus.org/doc/zh_cn/navigator.html#plus.navigator.closeSplashscreen
+				 */
+				plus.navigator.closeSplashscreen();
+				document.getElementById("start").addEventListener("tap", function() {
+					/**
+					 * 向本地存储中设置launchFlag的值，即启动标识；
+					 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.setItem
+					 */
+					plus.storage.setItem("launchFlag", "true");
+					var index = plus.webview.create('index.html', 'index');
+					index.show("slide-in-right", 150);
+				});
+			});
+			/**
+			 * 重写mui.back()，什么都不执行，反之用户返回到入口页；
+			 */
+			mui.back = function() {};
+		</script>
+	</body>
+
+</html>

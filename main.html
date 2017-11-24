@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>主页面</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">首页</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" data-id="home">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" data-id="weather">
+				<span class="mui-icon mui-icon-phone"></span>
+				<span class="mui-tab-label">天气</span>
+			</a>
+			<a class="mui-tab-item" data-id="news">
+				<span class="mui-icon mui-icon-email"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" data-id="about">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">关于</span>
+			</a>
+		</nav>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				/**
+				 * 手动关闭启动界面
+				 */
+				plus.navigator.closeSplashscreen();
+
+				/**
+				 *把页面存在数组里面 
+				 **/
+				var subInfos = [{
+					url: 'pages/home.html',
+					id: 'home'
+				}, {
+					url: 'pages/weather.html',
+					id: 'weather',
+				}, {
+					url: 'pages/news.html',
+					id: 'news'
+				}, {
+					url: 'pages/about.html',
+					id: 'about'
+				}];
+
+				/**
+				 *设置头部底部高度 
+				 **/
+				var subStyles = {
+					top: '45px',
+					bottom: '51px'
+				};
+
+				/**
+				 * 根据id查询子页面的信息
+				 */
+				var getSubInfoById = function(infoList, id) {
+					var result = null;
+					for(var i = 0, len = infoList.length; i < len; i++) {
+						var _info = infoList[i];
+						if(_info.id === id) {
+							result = _info;
+							break;
+						}
+					}
+					return result;
+				};
+
+				var mainWv = plus.webview.currentWebview();
+				var titleEL = document.querySelector('.mui-title');
+				var activeTab = '';
+
+				/**
+				 * 默认只加载首页webview
+				 */
+				var homeWv = plus.webview.create(subInfos[0].url, subInfos[0].id, subStyles);
+				mainWv.append(homeWv);
+				activeTab = subInfos[0].id;
+
+				/**
+				 * 点击切换，动态创建其它webview；
+				 */
+				mui('.mui-bar-tab').on('tap', 'a.mui-tab-item', function(e) {
+					var _self = this;
+					var targetTab = _self.getAttribute('data-id');
+					if(targetTab === activeTab) {
+						return;
+					}
+					titleEL.innerText = _self.querySelector('.mui-tab-label').innerText;
+					var _subWv = plus.webview.getWebviewById(targetTab);
+					/*
+					 *若webview不存在，则创建；
+					 **/
+					if(!_subWv) {
+						var _subInfo = getSubInfoById(subInfos, targetTab);
+						_subWv = plus.webview.create(_subInfo.url, _subInfo.id, subStyles);
+						mainWv.append(_subWv);
+					}
+					_subWv.show();
+					/**
+					 * 隐藏之前的webview
+					 */
+					plus.webview.getWebviewById(activeTab).hide('none');
+					activeTab = targetTab;
+				});
+			});
+
+			/**
+			 * 重写mui.back()，一秒内连续点击两次，退出应用，仅安卓有效；
+			 */
+			var first = null;
+			mui.back = function() {
+				if(!first) {
+					first = new Date().getTime();
+					/**
+					 * 自动消失提示信息
+					 * http://www.html5plus.org/doc/zh_cn/nativeui.html#plus.nativeUI.toast
+					 */
+					plus.nativeUI.toast("再按一次退出应用");
+					setTimeout(function() {
+						first = null;
+					}, 1000);
+				} else {
+					if(new Date().getTime() - first < 1000) {
+						/**
+						 * 退出应用，仅安卓有效；
+						 * http://www.html5plus.org/doc/zh_cn/runtime.html#plus.runtime.quit
+						 */
+						plus.runtime.quit();
+					}
+				}
+			};
+		</script>
+	</body>
+
+</html>

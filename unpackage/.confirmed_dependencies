@@ -1,0 +1,48 @@
+{
+	"main.html": {
+		"refer": [
+			"setting.html",
+			"pages/home.html",
+			"pages/contact.html",
+			"pages/email.html",
+			"pages/setting.html",
+			"pages/about.html",
+			"pages/news.html",
+			"pages/weather.html"
+		],
+		"resources": [
+			"pages/home.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"main.html",
+			"forget_password.html",
+			"reg.html",
+			"unlock.html"
+		]
+	},
+	"unlock.html": {
+		"refer": [
+			"login.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"pages/home.html"
+		],
+		"refer": [
+			"pages/email.html",
+			"pages/contact.html",
+			"pages/home.html",
+			"pages/setting.html",
+			"guidePage.html",
+			"main.html"
+		]
+	},
+	"guidePage.html": {
+		"refer": [
+			"index.html"
+		]
+	}
+}
