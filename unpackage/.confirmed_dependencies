@@ -1,62 +1,62 @@
 {
-	"main.html": {
-		"refer": [
-			"setting.html",
-			"pages/home.html",
-			"pages/contact.html",
-			"pages/email.html",
-			"pages/setting.html",
-			"pages/about.html",
-			"pages/news.html",
-			"pages/weather.html"
-		],
-		"resources": [
-			"pages/home.html"
-		]
-	},
-	"login.html": {
-		"refer": [
-			"main.html",
-			"forget_password.html",
-			"reg.html",
-			"unlock.html"
-		]
-	},
-	"unlock.html": {
-		"refer": [
-			"login.html"
-		]
-	},
-	"index.html": {
-		"resources": [
-			"pages/home.html"
-		],
-		"refer": [
-			"pages/email.html",
-			"pages/contact.html",
-			"pages/home.html",
-			"pages/setting.html",
-			"guidePage.html",
-			"main.html"
-		]
-	},
-	"guidePage.html": {
-		"refer": [
-			"index.html"
-		]
-	},
-	"pages/home.html": {
-		"refer": [
-			"pages/home-expressDelivery.html",
-			"pages/home-identificationCard.html",
-			"pages/home-belongingTo.html",
-			"pages/home-equipment.html",
-			"pages/home-exchangeRate.html",
-			"pages/home-figure.html",
-			"pages/home-publicTransport.html",
-			"pages/home-providentFund.html",
-			"pages/home-banks.html",
-			"pages/home-translation.html"
-		]
-	}
+  "main.html": {
+    "refer": [
+      "setting.html",
+      "pages/home.html",
+      "pages/contact.html",
+      "pages/email.html",
+      "pages/setting.html",
+      "pages/about.html",
+      "pages/news.html",
+      "pages/weather.html"
+    ],
+    "resources": [
+      "pages/home.html"
+    ]
+  },
+  "login.html": {
+    "refer": [
+      "main.html",
+      "forget_password.html",
+      "reg.html",
+      "unlock.html"
+    ]
+  },
+  "unlock.html": {
+    "refer": [
+      "login.html"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "pages/home.html"
+    ],
+    "refer": [
+      "pages/email.html",
+      "pages/contact.html",
+      "pages/home.html",
+      "pages/setting.html",
+      "guidePage.html",
+      "main.html"
+    ]
+  },
+  "guidePage.html": {
+    "refer": [
+      "index.html"
+    ]
+  },
+  "pages/home.html": {
+    "refer": [
+      "pages/home-expressDelivery.html",
+      "pages/home-identificationCard.html",
+      "pages/home-belongingTo.html",
+      "pages/home-equipment.html",
+      "pages/home-exchangeRate.html",
+      "pages/home-figure.html",
+      "pages/home-publicTransport.html",
+      "pages/home-providentFund.html",
+      "pages/home-banks.html",
+      "pages/home-translation.html"
+    ]
+  }
 }
