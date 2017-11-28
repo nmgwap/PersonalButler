@@ -169,9 +169,9 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": ""
+					"hdpi": "images/480.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "images/720.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "images/1080.png"
 				}
 			}
 		}
@@ -300,6 +300,22 @@
 				"resources": [],
 				"refer": [
 					"index.html"
+				],
+				"priority": 0
+			},
+			"pages/home.html": {
+				"resources": [],
+				"refer": [
+					"pages/home-expressDelivery.html",
+					"pages/home-identificationCard.html",
+					"pages/home-belongingTo.html",
+					"pages/home-equipment.html",
+					"pages/home-exchangeRate.html",
+					"pages/home-figure.html",
+					"pages/home-publicTransport.html",
+					"pages/home-providentFund.html",
+					"pages/home-banks.html",
+					"pages/home-translation.html"
 				],
 				"priority": 0
 			}

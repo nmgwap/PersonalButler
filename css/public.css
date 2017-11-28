@@ -16,19 +16,25 @@
 /*页面顶部标题栏颜色*/
 
 .titleBar-bgcolor {
-	background-color: #50C2E9 !important;
+	background-color: #009be0 !important;
 }
 
+.mui-bar-nav {
+	box-shadow: 0 1px 0px #009be0 !important;
+}
+
+
 /*顶部标题颜色*/
-.titleBar-color{
-	color:#fff !important;
+
+.titleBar-color {
+	color: #fff !important;
 }
 
 
 /*页面底部tab栏颜色*/
 
 .tabBar-bgcolor {
-	background-color: #3E7BCB !important;
+	background-color: #009be0 !important;
 }
 
 
@@ -42,12 +48,78 @@
 /* 底部选项卡默认颜色*/
 
 .mui-bar-tab .mui-tab-item {
-	color: #ffffff !important;
+	color: #8EDBD3 !important;
 }
 
 
 /*底部选项卡选中颜色*/
 
 .mui-bar-tab .mui-tab-item.mui-active {
-	color: #e4393c !important;
+	color: #ffffff !important;
+}
+
+
+/*
+ * add lidonghui 
+ * 以下css文件为公用样式文件
+ * 
+ **/
+
+.bs-bb {
+	box-sizing: border-box;
+}
+.bgc-ff{
+	background-color: #ffffff;
+}
+.bdFontSize {
+	font-size: 16px !important;
+}
+
+.ttFontSize {
+	font-size: 18px !important;
+}
+
+.listFontSize {
+	font-size: 14px !important;
+}
+.smFontSize{
+	font-size: 12px !important;
+}
+.ta-c{
+	text-align: center;
+}
+
+/*
+ * add lidonghui 
+ * 以下css文件为app各页面单独样式
+ * 
+ **/
+
+
+/*home页面*/
+
+.home-listbox {
+	width:100%;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:10px;
+	margin-top:5px;
+}
+.serviceTitle{
+	width:100%;
+	text-align: center;
+	
+}
+.serviceTitle>span{
+	background-color: #50c1e9;
+	color:#fff;
+	padding:3px 5px;
+	border-radius: 5px;
+}
+.row-imgbox{
+	margin-top:10px;
+}
+.imgbox>img{
+	width:50px;
+	height:50px;
 }
