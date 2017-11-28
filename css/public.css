@@ -1,0 +1,53 @@
+/*
+ * 20171128 add lidonghui
+ * css公用文件 配置文件
+ * app页面样式配置
+ * 
+ **/
+
+
+/*轮播图高度配置*/
+
+.slider-height {
+	height: 200px;
+}
+
+
+/*页面顶部标题栏颜色*/
+
+.titleBar-bgcolor {
+	background-color: #50C2E9 !important;
+}
+
+/*顶部标题颜色*/
+.titleBar-color{
+	color:#fff !important;
+}
+
+
+/*页面底部tab栏颜色*/
+
+.tabBar-bgcolor {
+	background-color: #3E7BCB !important;
+}
+
+
+/*页面按钮颜色*/
+
+.btn-style {
+	color: #;
+}
+
+
+/* 底部选项卡默认颜色*/
+
+.mui-bar-tab .mui-tab-item {
+	color: #ffffff !important;
+}
+
+
+/*底部选项卡选中颜色*/
+
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #e4393c !important;
+}

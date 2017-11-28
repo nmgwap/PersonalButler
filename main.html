@@ -5,15 +5,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>主页面</title>
-		<link href="css/mui.min.css" rel="stylesheet" />\
+		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/iconfont.css" rel="stylesheet" />
+		<!--引入公用样式-->
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">首页</h1>
+		<header class="mui-bar mui-bar-nav titleBar-bgcolor">
+			<h1 class="mui-title titleBar-color">首页</h1>
 		</header>
-		<nav class="mui-bar mui-bar-tab">
+		<nav class="mui-bar mui-bar-tab tabBar-bgcolor">
 			<a class="mui-tab-item mui-active" data-id="home">
 				<span class="mui-icon iconfont icon-shouye-copy"></span>
 				<span class="mui-tab-label">首页</span>
@@ -31,6 +33,8 @@
 				<span class="mui-tab-label">关于</span>
 			</a>
 		</nav>
+		<!--这里面是content页面-->
+		<div class="mui-content"></div>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
