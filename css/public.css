@@ -217,10 +217,44 @@
 	border:1px solid #B1B7BD;
 	border-radius: 4px;
 }
+.figure-box{
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 4px;
+}
 .waitimg{
 	height:40px;
 	background-image: url(../images/wait.png);
 	background-position: center;
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
+}
+.bd-n{
+	border:none !important;
+}
+.heightimg{
+	height:40px;
+	background-image: url(../images/height.png);
+	background-position: center;
+	background-position-x: 0px;
+	background-size: 35px 35px;
+	background-repeat: no-repeat;
+}
+.weightimg{
+	height:40px;
+	background-image: url(../images/weight.png);
+	background-position: center;
+	background-position-x: 0px;
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+}
+.inputstyle{
+	border-bottom:1px solid #B1B7BD !important;
+	
+}
+.resulteimg{
+	width:80px;
+	padding-top:20px;
+	padding-bottom:20px;
 }
