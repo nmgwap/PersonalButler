@@ -6,20 +6,214 @@
 		<title>银行卡汇率</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
 		<!--引入公用样式-->
-		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav titleBar-bgcolor">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff"></a>
 			<h1 class="mui-title titleBar-color">银行卡汇率</h1>
 		</header>
 		<!--这里面是content页面-->
-		<div class="mui-content"></div>
+		<div class="mui-content">
+			<!--头部搜索框-->
+			<div class="header-search bs-bb">
+				<div class="header-title">
+					<span class="c-a3 bdFontSize">请您要查询的汇率</span>
+				</div>
+				<!--搜索框-->
+				<div class="header-inp mui-row">
+					<div class="mui-col-xs-5 rate-box" id="ratelbox">
+						<span class="bdFontSize c-a3" id="ratel">人民币</span>
+						<input type="text" style="display: none;" id="ratelval"/>
+					</div>
+					<div class="mui-col-xs-2 waitimg">
+
+					</div>
+					<div class="mui-col-xs-5 rate-box" id="raterbox">
+						<span class="bdFontSize c-a3" id="rater">人民币</span>
+						<input type="text" style="display: none;" id="raterval"/>
+					</div>
+				</div>
+				<!--确认按键-->
+				<div class="header-btn">
+					<button class="bdFontSize c-ff" id="btn">确&nbsp;&nbsp;&nbsp;&nbsp;认</button>
+				</div>
+			</div>
+			<!--显示内容区域-->
+			<div class="content bs-bb dp-n" id="results">
+				<div class="content-tt bs-bb">
+					<span class="ttFontSize c-a3">详细信息</span>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>当前汇率：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="rate"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>1元兑换值：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="calculate"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>更新时间：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="updateTime"></span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/immersed.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			mui.plusReady(function() {
+				var topoffset = '45px';
+				if(plus.navigator.isImmersedStatusbar()) {
+					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
+				}
+				document.getElementById('header').style.height = (immersed + 44) + 'px';
+				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				/*
+				 *选择框
+				 * 
+				 **/
+				//普通示例
+				var userPicker = new mui.PopPicker();
+				userPicker.setData([{
+					value: 'CNY',
+					text: '人民币'
+				}, {
+					value: 'USD',
+					text: '美元'
+				}, {
+					value: 'EUR',
+					text: '欧元'
+				}, {
+					value: 'GBP',
+					text: '英镑'
+				}, {
+					value: 'HKD',
+					text: '港币'
+				}, {
+					value: 'TWD',
+					text: '新台币'
+				}, {
+					value: 'MOP',
+					text: '澳门元'
+				}, {
+					value: 'MYR',
+					text: '林吉特'
+				}, {
+					value: 'RUB',
+					text: '俄罗斯卢布'
+				}, {
+					value: 'AUD',
+					text: '澳元'
+				}, {
+					value: 'CAD',
+					text: '加元'
+				}, {
+					value: 'JPY',
+					text: '日元'
+				}, {
+					value: 'KRW',
+					text: '韩元'
+				}, {
+					value: 'THB',
+					text: '泰铢'
+				}, {
+					value: 'CHF',
+					text: '瑞士法郎'
+				}, {
+					value: 'SGD',
+					text: '新加坡元'
+				}, {
+					value: 'NZD',
+					text: '新西兰元'
+				}]);
+				//左边选择
+				var ratelPickerButton = document.getElementById('ratelbox');
+				ratelPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						document.getElementById('ratel').innerText = items[0].text;
+						document.getElementById('ratelval').value = items[0].value;
+						
+					});
+				}, false);
+				//右边选择
+				var raterPickerButton = document.getElementById('raterbox');
+				raterPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						document.getElementById('rater').innerText = items[0].text;
+						document.getElementById('raterval').value = items[0].value;
+					});
+				}, false);
+				/*
+				 *发送请求获取值
+				 * 
+				 **/
+				document.getElementById('btn').addEventListener('tap', function(event) {
+					//获取用户名
+					var ratel = document.getElementById('ratelval').value;
+					var rater = document.getElementById('raterval').value;
+					console.log(ratel);
+					console.log(rater);
+					var url = "http://www.zhaotool.com/v1/api/huobi/e10adc3949ba59abbe56e057f20f883e/" + ratel + '/' + rater;
+					//判断是否为空
+					if(ratel != '' && rater != '') {
+						mui.ajax(url, {
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							success: function(data) {
+								if(data.code == "0") {
+									var dat = data.data;
+									//赋值
+									document.getElementById('rate').innerText = dat.rate;
+									document.getElementById('updateTime').innerText = dat.updateTime;
+									document.getElementById('calculate').innerText = dat.calculate;
+									document.getElementById("results").className = "content bs-bb";
+								} else {
+									plus.nativeUI.toast("查询错误！");
+								}
+
+							},
+							error: function(xhr, type, errorThrown) {
+
+							}
+						});
+					} else {
+						plus.nativeUI.toast("查询错误！");
+					}
+
+				})
+			})
+			//重写back
+			var oldBack = mui.back;
+			mui.back = function() {
+				document.getElementById("results").className = "content bs-bb dp-n";
+				oldBack();
+			};
 		</script>
 	</body>
 

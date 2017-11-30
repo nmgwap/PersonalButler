@@ -7,19 +7,96 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<!--引入公用样式-->
-		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav titleBar-bgcolor">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff c-ff"></a>
 			<h1 class="mui-title titleBar-color">翻译</h1>
 		</header>
 		<!--这里面是content页面-->
-		<div class="mui-content"></div>
+		<div class="mui-content">
+			<!--头部搜索框-->
+			<div class="header-search bs-bb">
+				<div class="header-title">
+					<span class="c-a3 bdFontSize">请输入您的要查询的银行卡号</span>
+				</div>
+				<!--搜索框-->
+				<div class="header-inp">
+					<input type="text" class="bdFontSize" placeholder="银行卡号" />
+					<span></span>
+				</div>
+				<!--确认按键-->
+				<div class="header-btn">
+					<button class="bdFontSize c-ff">确&nbsp;&nbsp;&nbsp;&nbsp;认</button>
+				</div>
+			</div>
+			<!--显示内容区域-->
+			<div class="content bs-bb">
+				<div class="content-tt bs-bb">
+					<span class="ttFontSize c-a3">详细信息</span>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>银行卡号：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span>1234567898778</span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>银行名称：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span>北京银行</span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>卡片类型：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span>京卡借记卡-借记卡</span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>银行网址：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span>hppt://www.bankbeijijng.com</span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>客服电话：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span>95526</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/immersed.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			mui.plusReady(function() {
+				var topoffset = '45px';
+				if(plus.navigator.isImmersedStatusbar()) {
+					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
+				}
+				document.getElementById('header').style.height = (immersed + 44) + 'px';
+				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+
+			})
 		</script>
 	</body>
 

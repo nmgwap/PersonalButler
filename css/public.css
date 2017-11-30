@@ -57,6 +57,12 @@
 .mui-bar-tab .mui-tab-item.mui-active {
 	color: #ffffff !important;
 }
+.c-ff{
+	color:#ffffff !important;
+}
+.c-a3{
+	color:#a3aab2;
+}
 
 
 /*
@@ -88,6 +94,9 @@
 .ta-c{
 	text-align: center;
 }
+.dp-n{
+	display:none ;
+}
 
 /*
  * add lidonghui 
@@ -100,10 +109,9 @@
 
 .home-listbox {
 	width:100%;
-	padding-left:10px;
-	padding-right:10px;
-	padding-top:10px;
+	padding:10px 10px 5px 10px;
 	margin-top:5px;
+	border-bottom:2px solid #e3e4e8; 
 }
 .serviceTitle{
 	width:100%;
@@ -142,4 +150,77 @@
 	box-sizing: border-box;
 	padding-top:50%;
 	text-align: center;
+}
+
+/*银行卡界面*/
+.header-search{
+	width:100%;
+	background-color: #ffffff;
+	padding:20px;
+	border-bottom:2px solid #e3e4e9;
+}
+.header-title{
+	
+}
+.header-inp{
+	margin-top:10px;
+	margin-bottom:10px;
+	position:relative;
+}
+.header-inp>input{
+	border:1px solid #4fc0e8 !important;
+	box-sizing:border-box;
+	padding-left:70px;
+	color:#9b9fa8;
+	
+}
+.header-inp>span{
+	display: inline-block;
+	width:60px;
+	height:38px;
+	background-color: #f1f2f6;
+	position: absolute;
+	top:1px;
+	left:1px;
+	background-image: url(../images/search.png);
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	background-position: 17px 7px;
+}
+.header-btn{
+	text-align: center;
+	
+}
+.header-btn>button{
+	padding:5px 20px;
+	background-color: #50c1e9;
+	border:none;
+}
+.content{
+	background-color: #ffffff;
+	margin-top:10px;
+	border-bottom:2px solid #e3e4e9;
+}
+.content-tt{
+	padding:20px 20px;
+	border-bottom:2px solid #f2f2f2;
+}
+.content-list{
+	padding:10px 20px;
+	border-bottom:2px solid #f2f2f2;
+}
+/*汇率*/
+.rate-box{
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+	border:1px solid #B1B7BD;
+	border-radius: 4px;
+}
+.waitimg{
+	height:40px;
+	background-image: url(../images/wait.png);
+	background-position: center;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
 }

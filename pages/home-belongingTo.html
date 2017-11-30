@@ -11,15 +11,110 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav titleBar-bgcolor">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff"></a>
 			<h1 class="mui-title titleBar-color">手机号码归属地</h1>
 		</header>
 		<!--这里面是content页面-->
-		<div class="mui-content"></div>
+		<div class="mui-content">
+			<!--头部搜索框-->
+			<div class="header-search bs-bb">
+				<div class="header-title">
+					<span class="c-a3 bdFontSize">请输入您要查询的手机号</span>
+				</div>
+				<!--搜索框-->
+				<div class="header-inp">
+					<input type="text" class="bdFontSize" placeholder="11位手机号" id="val" />
+					<span></span>
+				</div>
+				<!--确认按键-->
+				<div class="header-btn">
+					<button class="bdFontSize c-ff" id="btn">确&nbsp;&nbsp;&nbsp;&nbsp;认</button>
+				</div>
+			</div>
+			<!--显示内容区域-->
+			<div class="content bs-bb dp-n" id="results">
+				<div class="content-tt bs-bb">
+					<span class="ttFontSize c-a3">详细信息</span>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>手机号码：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="mobile"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>归属地：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="phoneArea"></span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/immersed.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			mui.plusReady(function() {
+				var topoffset = '45px';
+				if(plus.navigator.isImmersedStatusbar()) {
+					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
+				}
+				document.getElementById('header').style.height = (immersed + 44) + 'px';
+				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				/*
+				 *发送请求获取值
+				 * 
+				 **/
+				document.getElementById('btn').addEventListener('tap', function(event) {
+					//获取用户名
+					var val = document.getElementById('val').value;
+					var url = "http://www.zhaotool.com/v1/api/lt/e10adc3949ba59abbe56e057f20f883e/" + val;
+					//判断是否为空
+					if(val != '') {
+						mui.ajax(url, {
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							success: function(data) {
+								if(data.code == "0") {
+									var dat = data.data;
+									//赋值
+									document.getElementById('mobile').innerText = dat.mobile;
+									document.getElementById('phoneArea').innerText = dat.phoneArea;
+									document.getElementById("results").className = "content bs-bb";
+								} else {
+									plus.nativeUI.toast("请输入正确的手机号！");
+								}
+
+							},
+							error: function(xhr, type, errorThrown) {
+
+							}
+						});
+					} else {
+						plus.nativeUI.toast("请输入手机号！");
+					}
+
+				})
+
+			})
+			//重写back
+			var oldBack = mui.back;
+			mui.back = function() {
+				document.getElementById("results").className = "content bs-bb dp-n";
+				document.getElementById('val').value = "";
+				oldBack();
+			};
 		</script>
 	</body>
 
