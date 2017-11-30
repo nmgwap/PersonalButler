@@ -135,14 +135,14 @@
 			BMI.disp_alert = function(bmi) {
 				if(bmi < 18.5) {
 					document.getElementById('bankname').innerText = "你的体重太轻,要多吃点哟!";
-					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
 					
 				} else if(bmi >= 18.5 && bmi < 25) {
 					document.getElementById('bankname').innerText = "亲,你的体重正常,要继续保持哟!";
 					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
 				} else if(bmi >= 25 && bmi < 30) {
 					document.getElementById('bankname').innerText = "亲,您的体重过重,要减肥了!";
-					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
 				} else {
 					document.getElementById('bankname').innerText = "亲,你确实要减肥了!";
 					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')

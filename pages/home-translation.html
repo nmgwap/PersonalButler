@@ -20,27 +20,26 @@
 			<!--头部搜索框-->
 			<div class="header-search bs-bb">
 				<div class="header-title">
-					<span class="c-a3 bdFontSize">请输入您的要查询的银行卡号</span>
+					<span class="c-a3 bdFontSize">请输入您的要翻译的单词或句子</span>
 				</div>
 				<!--搜索框-->
 				<div class="header-inp">
-					<input type="text" class="bdFontSize" placeholder="银行卡号" />
-					<span></span>
+					<textarea name="" rows="" cols="" placeholder="如:good" id='val'></textarea>
 				</div>
 				<!--确认按键-->
 				<div class="header-btn">
-					<button class="bdFontSize c-ff">确&nbsp;&nbsp;&nbsp;&nbsp;认</button>
+					<button class="bdFontSize c-ff" id="btn">翻&nbsp;&nbsp;&nbsp;&nbsp;译</button>
 				</div>
 			</div>
 			<!--显示内容区域-->
 			<div class="content bs-bb">
 				<div class="content-tt bs-bb">
-					<span class="ttFontSize c-a3">详细信息</span>
+					<span class="ttFontSize c-a3">翻译结果</span>
 				</div>
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row">
 					<div class="mui-col-xs-3">
-						<span>银行卡号：</span>
+						<span>结果：</span>
 					</div>
 					<div class="mui-col-xs-9">
 						<span>1234567898778</span>
@@ -86,6 +85,7 @@
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/immersed.js"></script>
+		<script src="../js/md5.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function() {
@@ -95,8 +95,94 @@
 				}
 				document.getElementById('header').style.height = (immersed + 44) + 'px';
 				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				/*
+				 *发送请求获取值
+				 * 
+				 **/
+				document.getElementById('btn').addEventListener('tap', function(event) {
+					//获取要翻译的值
+					var val = document.getElementById('val').value;
+					//获取一个随机数
+					var randomString = '123456';
+					//应用id
+					var appKey = "602108750c1eace9";
+					//应用密钥
+					var miyao = "JCeC1kBhvgWkmUr34TVIoZ7i5lZJ12i7";
+					//混合md5值
+					var md5data = "602108750c1eace911123456JCeC1kBhvgWkmUr34TVIoZ7i5lZJ12i7";
+					console.log(md5data);
+					var stringMD5 = md5(md5data).toUpperCase();
+					toString()
+					
+					
+					//打印值
+					console.log(val);
+					console.log(appKey);
+					console.log(randomString);
+					console.log(miyao);
+					console.log(stringMD5);
+					var url = "http://openapi.youdao.com/api?";
+					//判断是否为空
+					if(val != 'wo') {
+						mui.ajax(url, {
+							data: {
+								'q': '11', //翻译
+								'appKey': '602108750c1eace9', //应用id
+								'salt': '123456', //随机数
+								'from': 'zh-CHS', //默认
+								'to': 'EN', //默认
+								'sign': 'BCEB8A47E89BD8C69362AAD758D77F63' //通过md5(appKey+q+salt+密钥)生成
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							success: function(data) {
+								console.log(JSON.stringify(data));
+								//								if(data.code == "0") {
+								//									var dat = data.data;
+								//									//赋值
+								//									document.getElementById('cardnum').innerText = dat.bankCard;
+								//									document.getElementById('bankname').innerText = dat.bankName;
+								//									document.getElementById('banktype').innerText = dat.cardType;
+								//									document.getElementById('bankurl').innerText = dat.site;
+								//									document.getElementById('bankcall').innerText = dat.bankMobile;
+								//									document.getElementById("results").className = "content bs-bb";
+								//								} else {
+								//									plus.nativeUI.toast("请输入正确的银行卡号！");
+								//								}
 
+							},
+							error: function(xhr, type, errorThrown) {
+
+							}
+						});
+					} else {
+						plus.nativeUI.toast("请输入银行卡号！");
+					}
+
+				})
 			})
+			//重写back
+			var oldBack = mui.back;
+			mui.back = function() {
+				document.getElementById("results").className = "content bs-bb dp-n";
+				document.getElementById('val').value = "";
+				oldBack();
+			};
+			// 随机生成字符串
+			function randomString(len) {　　
+				len = len || 32;　　
+				var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/ 　　
+				var maxPos = $chars.length;　　
+				var pwd = '';　　
+				for(var i = 0; i < len; i++) {　　　　
+					pwd += $chars.charAt(Math.floor(Math.random() * maxPos));　　
+				}　　
+				return pwd;
+			}
 		</script>
 	</body>
 

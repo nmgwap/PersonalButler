@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<!--引入公用样式-->
-		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
 	<body>
@@ -16,21 +16,115 @@
 			<h1 class="mui-title titleBar-color">设备查询</h1>
 		</header>
 		<!--这里面是content页面-->
-		<div class="mui-content"></div>
-		
+		<div class="mui-content">
+			<!--头部搜索框-->
+			<div class="header-search bs-bb">
+				<div class="header-title">
+					<span class="c-a3 bdFontSize">获取您移动设备信息</span>
+				</div>
+				<!--搜索框-->
+				<div class="header-inp">
+
+				</div>
+				<!--确认按键-->
+				<div class="header-btn">
+					<button class="bdFontSize c-ff" id="btn">获&nbsp;&nbsp;&nbsp;&nbsp;取</button>
+				</div>
+			</div>
+			<!--显示内容区域-->
+			<div class="content bs-bb dp-n" id="results">
+				<div class="content-tt bs-bb">
+					<span class="ttFontSize c-a3">详细信息</span>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>设备型号：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="nodelNumber"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>生产厂商：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="produced"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>识别码：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="identification"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>唯一标识：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="onlyOne"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="content-list c-a3 listFontSize mui-row">
+					<div class="mui-col-xs-3">
+						<span>身份码：</span>
+					</div>
+					<div class="mui-col-xs-9">
+						<span id="identity"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/immersed.js"></script>
 		<script type="text/javascript">
 			mui.init();
-			mui.plusReady(function(){
+			mui.plusReady(function() {
 				var topoffset = '45px';
-				if(plus.navigator.isImmersedStatusbar()){
-					topoffset = (Math.round(plus.navigator.getStatusbarHeight())+45)+'px';
+				if(plus.navigator.isImmersedStatusbar()) {
+					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
 				}
-				document.getElementById('header').style.height = (immersed+44)+'px';
-				document.querySelector('.mui-content').style.marginTop = (immersed)+'px';
-				
+				document.getElementById('header').style.height = (immersed + 44) + 'px';
+				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				//获取移动设备信息
+
+				document.getElementById('btn').addEventListener('tap', function(event) {
+					document.getElementById('nodelNumber').innerText = plus.device.model;
+					document.getElementById('produced').innerText = plus.device.vendor;
+					document.getElementById('identification').innerText = plus.device.imsi;
+					document.getElementById('onlyOne').innerText = plus.device.uuid;
+					document.getElementById('identity').innerText = plus.device.imei;
+					document.getElementById("results").className = "content bs-bb";
+				})
+
+				//				//身份码
+				//				
+				//				console.log('身份码'+plus.device.imei);
+				//				
+				//				//识别码
+				//				console.log('识别码'+plus.device.imsi);
+				//				//设备的型号
+				//				console.log('设备的型号'+plus.device.model);
+				//				//生产厂商
+				//				console.log('生产厂商'+plus.device.vendor);
+				//      //唯一标识
+				//      console.log('唯一标识'+plus.device.uuid);
 			})
+			//重写back
+			var oldBack = mui.back;
+			mui.back = function() {
+				document.getElementById("results").className = "content bs-bb dp-n";
+				oldBack();
+			};
 		</script>
 	</body>
 
