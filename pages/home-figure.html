@@ -61,7 +61,7 @@
 				</div>
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row ta-c">
-					<img src="../images/good.png" alt="" class="resulteimg" />
+					<img src="" alt="" class="resulteimg" id="imgxx"/>
 				</div>
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row">
@@ -105,83 +105,7 @@
 				}
 				document.getElementById('header').style.height = (immersed + 44) + 'px';
 				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
-				//				/*
-				//				 *选择框
-				//				 * 
-				//				 **/
-				//				//普通示例
-				//				var userPicker = new mui.PopPicker();
-				//				userPicker.setData([{
-				//					value: 'CNY',
-				//					text: '人民币'
-				//				}, {
-				//					value: 'USD',
-				//					text: '美元'
-				//				}, {
-				//					value: 'EUR',
-				//					text: '欧元'
-				//				}, {
-				//					value: 'GBP',
-				//					text: '英镑'
-				//				}, {
-				//					value: 'HKD',
-				//					text: '港币'
-				//				}, {
-				//					value: 'TWD',
-				//					text: '新台币'
-				//				}, {
-				//					value: 'MOP',
-				//					text: '澳门元'
-				//				}, {
-				//					value: 'MYR',
-				//					text: '林吉特'
-				//				}, {
-				//					value: 'RUB',
-				//					text: '俄罗斯卢布'
-				//				}, {
-				//					value: 'AUD',
-				//					text: '澳元'
-				//				}, {
-				//					value: 'CAD',
-				//					text: '加元'
-				//				}, {
-				//					value: 'JPY',
-				//					text: '日元'
-				//				}, {
-				//					value: 'KRW',
-				//					text: '韩元'
-				//				}, {
-				//					value: 'THB',
-				//					text: '泰铢'
-				//				}, {
-				//					value: 'CHF',
-				//					text: '瑞士法郎'
-				//				}, {
-				//					value: 'SGD',
-				//					text: '新加坡元'
-				//				}, {
-				//					value: 'NZD',
-				//					text: '新西兰元'
-				//				}]);
-				//				//左边选择
-				//				var ratelPickerButton = document.getElementById('ratelbox');
-				//				ratelPickerButton.addEventListener('tap', function(event) {
-				//					userPicker.show(function(items) {
-				//						document.getElementById('ratel').innerText = items[0].text;
-				//
-				//					});
-				//				}, false);
-				//				//右边选择
-				//				var raterPickerButton = document.getElementById('raterbox');
-				//				raterPickerButton.addEventListener('tap', function(event) {
-				//					userPicker.show(function(items) {
-				//						document.getElementById('rater').innerText = items[0].text;
-				//					});
-				//				}, false);
-				/*
-				 *发送请求获取值
-				 * 
-				 **/
+				//判断数据
 				document.getElementById('btn').addEventListener('tap', function(event) {
 					//获取用户名
 					var a = document.getElementById('height').value;
@@ -211,12 +135,17 @@
 			BMI.disp_alert = function(bmi) {
 				if(bmi < 18.5) {
 					document.getElementById('bankname').innerText = "你的体重太轻,要多吃点哟!";
+					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
+					
 				} else if(bmi >= 18.5 && bmi < 25) {
 					document.getElementById('bankname').innerText = "亲,你的体重正常,要继续保持哟!";
+					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
 				} else if(bmi >= 25 && bmi < 30) {
 					document.getElementById('bankname').innerText = "亲,您的体重过重,要减肥了!";
+					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
 				} else {
 					document.getElementById('bankname').innerText = "亲,你确实要减肥了!";
+					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
 				}
 			}
 			//重写back
