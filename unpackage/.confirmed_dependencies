@@ -58,5 +58,13 @@
       "pages/home-banks.html",
       "pages/home-translation.html"
     ]
+  },
+  "pages/about.html": {
+    "refer": [
+      "pages/about-describe.html",
+      "pages/about-about.html",
+      "pages/about-opinion.html",
+      "pages/about-support.html"
+    ]
   }
 }

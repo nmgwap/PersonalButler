@@ -6,6 +6,8 @@
 		<title>翻译</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
 		<!--引入公用样式-->
 		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
@@ -18,13 +20,27 @@
 		<!--这里面是content页面-->
 		<div class="mui-content">
 			<!--头部搜索框-->
-			<div class="header-search bs-bb">
-				<div class="header-title">
+			<div class="header-search bs-bb ">
+				<!--搜索框-->
+				<div class="mui-row">
+					<div class="mui-col-xs-4 ta-c bd-bd" id="ratelbox">
+						<span class="listFontSize c-a3" id="from">中文</span>
+						<input type="text" style="display: none;" value="zh" id="ratelval" />
+					</div>
+					<div class="mui-col-xs-4 ta-c">
+						<img src="../images/fy.png" alt="" style="width:30px;" />
+					</div>
+					<div class="mui-col-xs-4 ta-c bd-bd" id="raterbox">
+						<span class="listFontSize c-a3" id="to">中文</span>
+						<input type="text" style="display: none;" value="zh" id="raterval" />
+					</div>
+				</div>
+				<div class="header-title" style="margin-bottom:10px;">
 					<span class="c-a3 bdFontSize">请输入您的要翻译的单词或句子</span>
 				</div>
 				<!--搜索框-->
-				<div class="header-inp">
-					<textarea name="" rows="" cols="" placeholder="如:good" id='val'></textarea>
+				<div class="">
+					<textarea class="jyyj bs-bb listFontSize" name="" rows="4" cols="" placeholder="如：你好" id='text'></textarea>
 				</div>
 				<!--确认按键-->
 				<div class="header-btn">
@@ -32,7 +48,7 @@
 				</div>
 			</div>
 			<!--显示内容区域-->
-			<div class="content bs-bb">
+			<div class="content bs-bb dp-n" id="results">
 				<div class="content-tt bs-bb">
 					<span class="ttFontSize c-a3">翻译结果</span>
 				</div>
@@ -42,49 +58,33 @@
 						<span>结果：</span>
 					</div>
 					<div class="mui-col-xs-9">
-						<span>1234567898778</span>
+						<span id="jg">1234567898778</span>
 					</div>
 				</div>
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row">
 					<div class="mui-col-xs-3">
-						<span>银行名称：</span>
+						<span id="from1">中文：</span>
 					</div>
 					<div class="mui-col-xs-9">
-						<span>北京银行</span>
+						<span id="rz1"></span>
 					</div>
 				</div>
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row">
 					<div class="mui-col-xs-3">
-						<span>卡片类型：</span>
+						<span id="to1">英文：</span>
 					</div>
 					<div class="mui-col-xs-9">
-						<span>京卡借记卡-借记卡</span>
-					</div>
-				</div>
-				<!---->
-				<div class="content-list c-a3 listFontSize mui-row">
-					<div class="mui-col-xs-3">
-						<span>银行网址：</span>
-					</div>
-					<div class="mui-col-xs-9">
-						<span>hppt://www.bankbeijijng.com</span>
-					</div>
-				</div>
-				<!---->
-				<div class="content-list c-a3 listFontSize mui-row">
-					<div class="mui-col-xs-3">
-						<span>客服电话：</span>
-					</div>
-					<div class="mui-col-xs-9">
-						<span>95526</span>
+						<span id="rz2"></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/immersed.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
 		<script src="../js/md5.js"></script>
 		<script type="text/javascript">
 			mui.init();
@@ -96,43 +96,143 @@
 				document.getElementById('header').style.height = (immersed + 44) + 'px';
 				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
 				/*
+				 *选择框
+				 * 
+				 **/
+				//普通示例
+				var userPicker = new mui.PopPicker();
+				userPicker.setData([{
+					value: 'zh',
+					text: '中文'
+				}, {
+					value: 'en',
+					text: '英语'
+				}, {
+					value: 'yue',
+					text: '粤语'
+				}, {
+					value: 'wyw',
+					text: '文言文'
+				}, {
+					value: 'jp',
+					text: '日语'
+				}, {
+					value: 'kor',
+					text: '韩语'
+				}, {
+					value: 'fra',
+					text: '法语'
+				}, {
+					value: 'spa',
+					text: '西班牙语'
+				}, {
+					value: 'th',
+					text: '泰语'
+				}, {
+					value: 'ara',
+					text: '阿拉伯语'
+				}, {
+					value: 'ru',
+					text: '俄语'
+				}, {
+					value: 'pt',
+					text: '葡萄牙语'
+				}, {
+					value: 'de',
+					text: '德语'
+				}, {
+					value: 'it',
+					text: '意大利语'
+				}, {
+					value: 'el',
+					text: '希腊语'
+				}, {
+					value: 'nl',
+					text: '荷兰语'
+				}, {
+					value: 'pl',
+					text: '波兰语'
+				}, {
+					value: 'bul',
+					text: '保加利亚语'
+				}, {
+					value: 'est',
+					text: '爱沙尼亚语'
+				}, {
+					value: 'dan',
+					text: '丹麦语'
+				}, {
+					value: 'fin',
+					text: '芬兰语'
+				}, {
+					value: 'cs',
+					text: '捷克语'
+				}, {
+					value: 'rom',
+					text: '罗马尼亚语'
+				}, {
+					value: 'sol',
+					text: '斯洛文尼亚语'
+				}, {
+					value: 'swe',
+					text: '瑞典语'
+				}, {
+					value: 'hu',
+					text: '匈牙利语'
+				}, {
+					value: 'cht',
+					text: '繁体中文'
+				}, {
+					value: 'vie',
+					text: '越南语'
+				}]);
+				//左边选择
+				var ratelPickerButton = document.getElementById('ratelbox');
+				ratelPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						document.getElementById('from').innerText = items[0].text;
+						document.getElementById('from1').innerText = items[0].text+':';
+						document.getElementById('ratelval').value = items[0].value;
+
+					});
+				}, false);
+				//右边选择
+				var raterPickerButton = document.getElementById('raterbox');
+				raterPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						document.getElementById('to').innerText = items[0].text;
+						document.getElementById('to1').innerText = items[0].text+":";
+						document.getElementById('raterval').value = items[0].value;
+					});
+				}, false);
+				/*
 				 *发送请求获取值
 				 * 
 				 **/
 				document.getElementById('btn').addEventListener('tap', function(event) {
 					//获取要翻译的值
-					var val = document.getElementById('val').value;
-					//获取一个随机数
-					var randomString = '123456';
-					//应用id
-					var appKey = "602108750c1eace9";
-					//应用密钥
-					var miyao = "JCeC1kBhvgWkmUr34TVIoZ7i5lZJ12i7";
-					//混合md5值
-					var md5data = "602108750c1eace911123456JCeC1kBhvgWkmUr34TVIoZ7i5lZJ12i7";
-					console.log(md5data);
-					var stringMD5 = md5(md5data).toUpperCase();
-					toString()
-					
-					
-					//打印值
+					var val = document.getElementById('text').value;
+					if(val == '') {
+						plus.nativeUI.toast("请输入要翻译的单词或句子！");
+						return;
+					}
+					var ratel = document.getElementById('ratelval').value;
+					var rater = document.getElementById('raterval').value;
 					console.log(val);
-					console.log(appKey);
-					console.log(randomString);
-					console.log(miyao);
-					console.log(stringMD5);
-					var url = "http://openapi.youdao.com/api?";
+					console.log(ratel);
+					console.log(rater);
+					//获取一个随机数ss
+					//应用id
+					var appKey = "20171130000101236";
+					//应用密钥
+					var miyao = "yKYby8QiIp21wUE2vC8L";
+					//混合md5值
+					var md5data = "20171130000101236" + val + "121212yKYby8QiIp21wUE2vC8L";
+					var stringMD5 = md5(md5data);
+					var url = "http://api.fanyi.baidu.com/api/trans/vip/translate?q=" + val + "&from=" + ratel + "&to=" + rater + "&appid=20171130000101236&salt=121212&sign=" + stringMD5;
 					//判断是否为空
 					if(val != 'wo') {
 						mui.ajax(url, {
-							data: {
-								'q': '11', //翻译
-								'appKey': '602108750c1eace9', //应用id
-								'salt': '123456', //随机数
-								'from': 'zh-CHS', //默认
-								'to': 'EN', //默认
-								'sign': 'BCEB8A47E89BD8C69362AAD758D77F63' //通过md5(appKey+q+salt+密钥)生成
-							},
 							dataType: 'json', //服务器返回json格式数据
 							type: 'post', //HTTP请求类型
 							timeout: 10000, //超时时间设置为10秒；
@@ -140,20 +240,17 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
-								console.log(JSON.stringify(data));
-								//								if(data.code == "0") {
-								//									var dat = data.data;
-								//									//赋值
-								//									document.getElementById('cardnum').innerText = dat.bankCard;
-								//									document.getElementById('bankname').innerText = dat.bankName;
-								//									document.getElementById('banktype').innerText = dat.cardType;
-								//									document.getElementById('bankurl').innerText = dat.site;
-								//									document.getElementById('bankcall').innerText = dat.bankMobile;
-								//									document.getElementById("results").className = "content bs-bb";
-								//								} else {
-								//									plus.nativeUI.toast("请输入正确的银行卡号！");
-								//								}
-
+								console.log(JSON.stringify(data))
+								try {
+									var dat = data.trans_result[0];
+									//赋值
+									document.getElementById('rz1').innerText = dat.src;
+									document.getElementById('rz2').innerText = dat.dst;
+									document.getElementById('jg').innerText = dat.dst;
+									document.getElementById("results").className = "content bs-bb";
+								} catch(e) {
+									plus.nativeUI.toast("翻译结果出错，请重试！");
+								}
 							},
 							error: function(xhr, type, errorThrown) {
 
@@ -169,19 +266,18 @@
 			var oldBack = mui.back;
 			mui.back = function() {
 				document.getElementById("results").className = "content bs-bb dp-n";
-				document.getElementById('val').value = "";
+				document.getElementById('rz1').innerText = '';
+				document.getElementById('rz2').innerText = '';
+				document.getElementById('jg').innerText = '';
 				oldBack();
 			};
-			// 随机生成字符串
-			function randomString(len) {　　
-				len = len || 32;　　
-				var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/ 　　
-				var maxPos = $chars.length;　　
-				var pwd = '';　　
-				for(var i = 0; i < len; i++) {　　　　
-					pwd += $chars.charAt(Math.floor(Math.random() * maxPos));　　
-				}　　
-				return pwd;
+
+			function encodeUnicode(str) {
+				var res = [];
+				for(var i = 0; i < str.length; i++) {
+					res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+				}
+				return "\\u" + res.join("\\u");
 			}
 		</script>
 	</body>

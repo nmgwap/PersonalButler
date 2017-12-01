@@ -4,12 +4,7 @@
  * app页面样式配置
  * 
  **/
-html,
-body{
-	width:100%;
-	height:100%;
-	box-sizing: border-box;
-}
+
 
 /*轮播图高度配置*/
 
@@ -393,13 +388,73 @@ body{
 .mg-b{
 	margin-bottom:5px;
 }
-/*
- 
- * city
- * whimg
- * 
- * 
- * 
- * 
- * 
- * */
+/*新闻中心*/
+
+
+/*关于我们*/
+.about-imgbox{
+	
+}
+.logo-box>img{
+	width:60px;
+	padding-top:50px;
+}
+.about-con{
+	padding:20px;
+	margin-top:10px;
+}
+.logo-text{
+	margin-top:10px;
+}
+.listbox{
+	width:100%;
+	height:100px;
+	border-radius:5px;
+	margin-top:20px;
+	 
+}
+.about-limg{
+	height:100px;
+	line-height: 100px;
+}
+.about-limg>img{
+	width:60px;
+	height:60px;
+	border-radius: 50%;
+	margin-top:20px;
+}
+.about-text{
+	padding:25px 0px;
+}
+.blg1{
+	background: linear-gradient(to left,#E98D43, #F2DD14);
+}
+.blg2{
+	background: linear-gradient(to left,#6A6CEB, #D38AFF);
+}
+.gnjs{
+	margin-top:10px;
+}
+.jyyj{
+	padding:3px;
+}
+.inut{
+	padding-left:5px !important;
+	padding-right:5px !important;
+	margin-top:10px;
+	border-color: rgba(0,0,0,0.2);
+}
+.bd-bd{
+	border:1px solid #8F8F8F;
+	border-radius:5px;
+	padding:5px 5px;
+	margin-bottom:10px;
+}
+.zfbq>img{
+	width:60%;
+	margin-top:20px;
+	margin-bottom:10px;
+}
+.zfwz{
+	margin-top:20px;
+}

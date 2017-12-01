@@ -15,7 +15,7 @@
 			<span class="smFontSize">设置</span>
 		</div>
 		<ul class="mui-table-view notfatherbox">
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell shar">
 				<a class="mui-navigate-right">分享好友</a>
 			</li>
 			<li class="mui-table-view-cell clearCache">
@@ -26,19 +26,19 @@
 			<span class="smFontSize">更多</span>
 		</div>
 		<ul class="mui-table-view notfatherbox">
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell publicjumppage" id="about-describe">
 				<a class="mui-navigate-right">软件描述</a>
 			</li>
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell publicjumppage" id="about-opinion">
 				<a class="mui-navigate-right">意见反馈</a>
 			</li>
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell publicjumppage" id="about-support">
 				<a class="mui-navigate-right">捐赠支持 </a>
 			</li>
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell update">
 				<a class="mui-navigate-right">检查更新</a>
 			</li>
-			<li class="mui-table-view-cell publicjumppage">
+			<li class="mui-table-view-cell publicjumppage" id="about-about">
 				<a class="mui-navigate-right">关于</a>
 			</li>
 		</ul>
@@ -49,6 +49,24 @@
 		<script src="../js/public.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			mui.plusReady(function(){
+				mui.preload({
+					url: "about-about.html",
+					id: "about-about"
+				});
+				mui.preload({
+					url: "about-describe.html",
+					id: "about-describe"
+				});
+				mui.preload({
+					url: "about-opinion.html",
+					id: "about-opinion"
+				});
+				mui.preload({
+					url: "about-support.html",
+					id: "about-support"
+				});
+			})
 		</script>
 	</body>
 

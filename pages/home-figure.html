@@ -110,6 +110,10 @@
 					//获取用户名
 					var a = document.getElementById('height').value;
 					var b = document.getElementById('weight').value;
+					if(a == '' || b == ''){
+						plus.nativeUI.toast("请输入身高体重！");
+						return;
+					}
 					if(!isNaN(a) && !isNaN(b)) {
 						var bmi = eval(document.getElementById('BMI').value);
 						var bmiValue = BMI.getBMI(a, b);

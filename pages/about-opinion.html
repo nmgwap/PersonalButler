@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>意见反馈</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<!--引入公用样式-->
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff"></a>
+			<h1 class="mui-title titleBar-color">意见反馈</h1>
+		</header>
+		<!--这里面是content页面-->
+		<div class="mui-content bs-bb">
+			<!--头部搜索框-->
+			<div class="header-search bs-bb">
+				<div class="header-title">
+					<span class="c-a3 bdFontSize">意见与建议</span>
+				</div>
+				<!--搜索框-->
+				<div class="">
+					<input class="inut listFontSize" type="text" class="bdFontSize" placeholder="方便留下您的邮箱吗" id="email" />
+					<textarea class="jyyj bs-bb listFontSize" name="" rows="5" cols="" placeholder="请详细描述您的建议和问题" id='text'></textarea>
+				</div>
+				<!--确认按键-->
+				<div class="header-btn">
+					<button class="bdFontSize c-ff" id="btn">发&nbsp;&nbsp;&nbsp;&nbsp;送</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/immersed.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				var topoffset = '45px';
+				if(plus.navigator.isImmersedStatusbar()) {
+					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
+				}
+				document.getElementById('header').style.height = (immersed + 44) + 'px';
+				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				/*
+				 
+				 * 
+				 * */
+				document.getElementById('btn').addEventListener('tap', function(event) {
+					//获取邮箱
+					var email = document.getElementById('email').value;
+					//获取内容
+					var text = document.getElementById('text').value;
+					var msg = plus.messaging.createMessage(plus.messaging.TYPE_EMAIL);
+					msg.to = ['nmgwap@126.com'];
+					msg.cc = ['nmgwap@126.com'];
+					msg.bcc = ['nmgwap@126.com'];
+					msg.subject = "来自"+email+"邮箱的意见";
+					msg.body = text;
+					plus.messaging.sendMessage(msg, function() {
+						mui.back();
+					}, function() {
+						plus.nativeUI.toast("发送错误");
+						document.getElementById('email').value = ' ';
+						document.getElementById('text').value = ' ';
+						mui.back();
+					});
+				})
+			})
+		</script>
+	</body>
+
+</html>

@@ -10,6 +10,12 @@
 		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
 		<!--引入公用样式-->
 		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -132,7 +138,7 @@
 								var data = data.HeWeather6[0].now;
 								//赋值
 								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
-								document.getElementById('city').innerText =dat.address.province+' '+dat.address.city+' '+dat.address.district;
+								document.getElementById('city').innerText = dat.address.province + ' ' + dat.address.city + ' ' + dat.address.district;
 								document.getElementById('cond_txt').innerText = data.cond_txt;
 								document.getElementById('wind_dir').innerText = data.wind_dir;
 								document.getElementById('wind_sc').innerText = data.wind_sc;
