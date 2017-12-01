@@ -3,21 +3,217 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>邮件</title>
+		<title>天气</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.poppicker.css" />
 		<!--引入公用样式-->
 		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
 	<body>
-		<div class="notCompleted">
-			<div><img src="../images/kfz.png" alt="" / style="width:40px;"></div>
-			<div>开发中...</div>
+		<div class="weather-box bs-bb">
+			<div class="wt-hb bs-bb dp-n" id="results">
+				<!--城市-->
+				<div class="citybox">
+					<span class="cityname c-ff listFontSize" id="city"></span>
+				</div>
+				<!--天气-->
+				<div class="wh-sk ta-c bs-bb">
+					<div class="wh-img bs-bb">
+						<img src="../images/weather/tq7.png" alt="" id="whimg" />
+					</div>
+					<div class="mui-row">
+						<div class="mui-col-xs-6 ta-r wh-msg wh-lmsg">
+							<span class="wh-bigFontSize c-ff" id="tmp"></span>
+						</div>
+						<div class="mui-col-xs-6 ta-l wh-msg wh-rmsg">
+							<div>
+								<span class="c-ff smFontSize">℃</span>
+							</div>
+							<div>
+								<span class="c-ff smFontSize" id="cond_txt"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--详细信息-->
+				<div class="wh-list bs-bb mui-row" style="margin-top:40px;">
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-tgimg">体感温度</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="fl"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-xdimg">相对湿度</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="hum"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-jsimg">降水量</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="pcpn"></span>
+						</div>
+					</div>
+				</div>
+				<!--详细信息-->
+				<div class="wh-list bs-bb mui-row" style="margin-top:10px;">
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-fximg">风向</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="wind_dir"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-flimg">风力</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="wind_sc"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-4 bs-bb ta-c">
+						<div class="c-33 ta-c bdFontSize mg-b">
+							<span class="wh-imgp wh-fsimg">风速</span>
+						</div>
+						<div class="ta-c c-ff ttFontSize">
+							<span id="wind_spd"></span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script src="../js/city.data-3.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			//和风天气认证key     9aab750e479648829ea03e5646a3bc36
+			//实况天气
+			/* 实况：https://free-api.heweather.com/s6/weather/now?
+			 * 3-10天：https://free-api.heweather.com/s6/weather/forecast?
+			 * 逐小时预报：https://free-api.heweather.com/s6/weather/hourly?
+			 * 生活指数：https://free-api.heweather.com/s6/weather/lifestyle?
+			 * 
+			 * 例子
+			 * https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=北京
+			 **/
+			//全局变量
+
+			mui.plusReady(function() {
+				//获取当前地理位置信息
+				plus.geolocation.getCurrentPosition(function(data) {
+					console.log(JSON.stringify(data))
+					//address = data.address.district;
+					var dat = data;
+					//请求数据
+					var url = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=' + dat.address.district;
+					mui.ajax(url, {
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(data) {
+							if(data.HeWeather6[0].status == "ok") {
+								var data = data.HeWeather6[0].now;
+								//赋值
+								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
+								document.getElementById('city').innerText =dat.address.province+' '+dat.address.city+' '+dat.address.district;
+								document.getElementById('cond_txt').innerText = data.cond_txt;
+								document.getElementById('wind_dir').innerText = data.wind_dir;
+								document.getElementById('wind_sc').innerText = data.wind_sc;
+								document.getElementById('wind_spd').innerText = data.wind_spd;
+								document.getElementById('hum').innerText = data.hum;
+								document.getElementById('tmp').innerText = data.tmp;
+								document.getElementById('fl').innerText = data.fl;
+								document.getElementById('pcpn').innerText = data.pcpn;
+								document.getElementById("results").className = "wt-hb bs-bb";
+							} else {
+								plus.nativeUI.toast("天气获取失败！");
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+
+						}
+					});
+				}, function(e) {});
+				/*
+				 * 选择城市
+				 * 
+				 * */
+				/**
+				 * 获取对象属性的值
+				 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+				 * @param {Object} obj 对象
+				 * @param {String} param 属性名
+				 */
+				var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+				var cityPicker = new mui.PopPicker({
+					layer: 3
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = document.getElementById('city');
+				var cityResult = document.getElementById('city');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+
+						//address = _getParam(items[2], 'text');
+						plus.nativeUI.showWaiting("等待中...");
+						var urll = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=' + _getParam(items[2], 'text');
+						mui.ajax(urll, {
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							success: function(data) {
+								plus.nativeUI.closeWaiting();
+								console.log(JSON.stringify(data));
+								if(data.HeWeather6[0].status == "ok") {
+									var data = data.HeWeather6[0].now;
+									//赋值
+									document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
+									document.getElementById('city').innerText = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
+									document.getElementById('cond_txt').innerText = data.cond_txt;
+									document.getElementById('wind_dir').innerText = data.wind_dir;
+									document.getElementById('wind_sc').innerText = data.wind_sc;
+									document.getElementById('wind_spd').innerText = data.wind_spd;
+									document.getElementById('hum').innerText = data.hum;
+									document.getElementById('tmp').innerText = data.tmp;
+									document.getElementById('fl').innerText = data.fl;
+									document.getElementById('pcpn').innerText = data.pcpn;
+									document.getElementById("results").className = "wt-hb bs-bb";
+								} else {
+									plus.nativeUI.toast("天气获取失败！");
+								}
+
+							},
+							error: function(xhr, type, errorThrown) {
+
+							}
+						});
+					});
+				}, false);
+
+			})
 		</script>
 	</body>
 

@@ -56,9 +56,9 @@
 			</div>
 			<!--显示内容区域-->
 			<div class="content bs-bb dp-n" id="results">
-				<div class="content-tt bs-bb">
+				<!--<div class="content-tt bs-bb">
 					<span class="ttFontSize c-a3">测试结果</span>
-				</div>
+				</div>-->
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row ta-c">
 					<img src="" alt="" class="resulteimg" id="imgxx"/>
@@ -135,17 +135,17 @@
 			BMI.disp_alert = function(bmi) {
 				if(bmi < 18.5) {
 					document.getElementById('bankname').innerText = "你的体重太轻,要多吃点哟!";
-					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/bq1.gif')
 					
 				} else if(bmi >= 18.5 && bmi < 25) {
 					document.getElementById('bankname').innerText = "亲,你的体重正常,要继续保持哟!";
-					document.getElementById('imgxx').setAttribute("src",'../images/good.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/bq2.gif')
 				} else if(bmi >= 25 && bmi < 30) {
 					document.getElementById('bankname').innerText = "亲,您的体重过重,要减肥了!";
-					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/bq4.gif')
 				} else {
 					document.getElementById('bankname').innerText = "亲,你确实要减肥了!";
-					document.getElementById('imgxx').setAttribute("src",'../images/wl.png')
+					document.getElementById('imgxx').setAttribute("src",'../images/bq1.png')
 				}
 			}
 			//重写back

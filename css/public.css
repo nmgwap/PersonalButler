@@ -4,7 +4,12 @@
  * app页面样式配置
  * 
  **/
-
+html,
+body{
+	width:100%;
+	height:100%;
+	box-sizing: border-box;
+}
 
 /*轮播图高度配置*/
 
@@ -65,7 +70,9 @@
 .c-a3 {
 	color: #a3aab2;
 }
-
+.c-33{
+	color:#163B5B;
+}
 
 /*
  * add lidonghui 
@@ -286,7 +293,113 @@
 }
 
 .resulteimg {
-	width: 80px;
+	width: 150px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+
+/*天气css*/
+.weather-box{
+	width:100%;
+	height:100%;
+	background: linear-gradient(#009be0, #009be0); 
+}
+.wt-hb{
+	width:100%;
+}
+.citybox{
+	padding:20px;
+}
+.cityname{
+	padding:5px 10px 5px 25px;
+	background-image: url(../images/wz.png);
+	background-repeat: no-repeat;
+	background-size: 17px 17px;
+	background-position: 5px 5px;
+	border:1px solid #ffffff;
+	border-radius: 20px;
+}
+.wh-sk{
+	
+}
+.wh-img>img{
+	width:150px;
+}
+.ta-r{
+	text-align: right;
+}
+.ta-l{
+	text-align: left;
+}
+.wh-bigFontSize{
+	font-size: 50px !important;
+	
+}
+.wh-msg{
+	height:50px;
+}
+.wh-lmsg{
+	line-height: 50px;
+	padding-right:5px;
+}
+.wh-rmsg{
+	padding-left:5px;
+}
+.wh-list{
+	padding:20px;
+	margin-top:20px;
+}
+.wh-imgp{
+	padding-left:21px;
+}
+/**/
+.wh-tgimg{
+	background-image: url(../images/tfwd.png);
+	background-repeat: no-repeat;
+	background-size: 19px 19px;
+	background-position: 0px 0px;
+}
+.wh-xdimg{
+	background-image: url(../images/sd.png);
+	background-repeat: no-repeat;
+	background-size: 19px 19px;
+	background-position: 0px 0px;
+}
+.wh-jsimg{
+	background-image: url(../images/jstj.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: 0px 0px;
+}
+.wh-fximg{
+	background-image: url(../images/fx.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: 0px 0px;
+}
+.wh-flimg{
+	background-image: url(../images/fl.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: 0px 0px;
+}
+.wh-fsimg{
+	background-image: url(../images/fs.png);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: 0px 0px;
+}
+
+.mg-b{
+	margin-bottom:5px;
+}
+/*
+ 
+ * city
+ * whimg
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
