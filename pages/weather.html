@@ -120,12 +120,11 @@
 
 			mui.plusReady(function() {
 				//获取当前地理位置信息
-				plus.geolocation.getCurrentPosition(function(data) {
-					console.log(JSON.stringify(data))
-					//address = data.address.district;
-					var dat = data;
+				plus.geolocation.getCurrentPosition(function(res) {
+					//alert(JSON.stringify(data))
+					console.log(JSON.stringify(res))
 					//请求数据
-					var url = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=' + dat.address.district;
+					var url = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location='+res.coords.longitude+','+res.coords.latitude;
 					mui.ajax(url, {
 						dataType: 'json', //服务器返回json格式数据
 						type: 'post', //HTTP请求类型
@@ -135,10 +134,11 @@
 						},
 						success: function(data) {
 							if(data.HeWeather6[0].status == "ok") {
+								var dz = data.HeWeather6[0].basic.admin_area +" "+data.HeWeather6[0].basic.parent_city+" "+data.HeWeather6[0].basic.location;
 								var data = data.HeWeather6[0].now;
 								//赋值
 								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
-								document.getElementById('city').innerText = dat.address.province + ' ' + dat.address.city + ' ' + dat.address.district;
+								document.getElementById('city').innerText = dz;
 								document.getElementById('cond_txt').innerText = data.cond_txt;
 								document.getElementById('wind_dir').innerText = data.wind_dir;
 								document.getElementById('wind_sc').innerText = data.wind_sc;
