@@ -458,3 +458,108 @@
 .zfwz{
 	margin-top:20px;
 }
+/*新闻对话框*/
+.newbox{
+	position: fixed;
+	top:0px;
+	width:100%;
+	height:100%;
+}
+.conlistbox{
+	width:100%;
+	height:100%;
+	padding-bottom:60px;
+	overflow-y: scroll;
+	
+	
+}
+.newinputbox{
+	position:fixed;
+	bottom:0px;
+	height:50px;
+	width:100%;
+	line-height: 50px;
+	background-color: #F5F5F5;
+}
+
+.new-p{
+	padding:2px 10px;
+}
+.con-cent{
+	width:99%;
+	height:40px !important;
+}
+.btn-boxfs{
+	padding-left: 5px;
+}
+.btn-fs{
+	display: inline-block;
+	width:90%;
+	height:40px !important;
+	margin-top:5px;
+	text-align: center;
+}
+.con-list{
+	width:100%;
+	padding-top:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
+.jkimg>img{
+	width:40px;
+	height:40px;
+	border-radius:20px;
+}
+.jkmsg{
+	margin-top:15px;
+}
+.jktext{
+	position: relative;
+}
+.jkborder{
+	display: inline-block;
+	border:10px solid transparent;
+	border-right:10px solid #ffffff;
+	position:absolute;
+	top:10px;
+	left:-20px;
+}
+.jktext>span{
+	min-width: 0px;
+	padding:10px 10px;
+	background-color: #ffffff;
+	border:1px solid #ffffff;
+	border-radius:5px;
+	word-break:normal; 
+	width:auto; 
+	display:block; 
+	white-space:pre-wrap;
+	word-wrap : break-word ;
+	overflow: hidden ;
+	
+}
+.fsmsg{
+	margin-top:15px;
+}
+.fstext{
+	position: relative;
+}
+.fsborder{
+	display: inline-block;
+	border:10px solid transparent;
+	border-left:10px solid #9EEA6A;
+	position:absolute;
+	top:10px;
+	right:-20px;
+}
+.fstext>span{
+	min-width: 0px;
+	padding:10px 10px;
+	border-radius:5px;
+	word-break:normal; 
+	width:auto; 
+	display:block; 
+	white-space:pre-wrap;
+	word-wrap : break-word ;
+	overflow: hidden ;
+}
