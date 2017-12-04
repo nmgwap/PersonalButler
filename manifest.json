@@ -321,7 +321,8 @@
 					"pages/home-publicTransport.html",
 					"pages/home-providentFund.html",
 					"pages/home-banks.html",
-					"pages/home-translation.html"
+					"pages/home-translation.html",
+					"pages/home-ip.html"
 				],
 				"priority": 0
 			},
