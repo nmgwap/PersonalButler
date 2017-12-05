@@ -28,14 +28,14 @@
 				<div class="header-inp mui-row">
 					<div class="mui-col-xs-5 rate-box" id="ratelbox">
 						<span class="bdFontSize c-a3" id="ratel">人民币</span>
-						<input type="text" style="display: none;" id="ratelval"/>
+						<input type="text" style="display: none;" id="ratelval" />
 					</div>
 					<div class="mui-col-xs-2 waitimg">
 
 					</div>
 					<div class="mui-col-xs-5 rate-box" id="raterbox">
 						<span class="bdFontSize c-a3" id="rater">人民币</span>
-						<input type="text" style="display: none;" id="raterval"/>
+						<input type="text" style="display: none;" id="raterval" />
 					</div>
 				</div>
 				<!--确认按键-->
@@ -154,7 +154,7 @@
 					userPicker.show(function(items) {
 						document.getElementById('ratel').innerText = items[0].text;
 						document.getElementById('ratelval').value = items[0].value;
-						
+
 					});
 				}, false);
 				//右边选择
@@ -178,6 +178,7 @@
 					var url = "http://www.zhaotool.com/v1/api/huobi/e10adc3949ba59abbe56e057f20f883e/" + ratel + '/' + rater;
 					//判断是否为空
 					if(ratel != '' && rater != '') {
+						plus.nativeUI.showWaiting("加载中...");
 						mui.ajax(url, {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'post', //HTTP请求类型
@@ -186,6 +187,7 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
+								plus.nativeUI.closeWaiting();
 								if(data.code == "0") {
 									var dat = data.data;
 									//赋值
@@ -199,7 +201,7 @@
 
 							},
 							error: function(xhr, type, errorThrown) {
-
+								plus.nativeUI.closeWaiting();
 							}
 						});
 					} else {

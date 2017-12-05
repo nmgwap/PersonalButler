@@ -122,9 +122,10 @@
 				//获取当前地理位置信息
 				plus.geolocation.getCurrentPosition(function(res) {
 					//alert(JSON.stringify(data))
-					console.log(JSON.stringify(res))
+					console.log(JSON.stringify(res));
+					plus.nativeUI.showWaiting("加载中...");
 					//请求数据
-					var url = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location='+res.coords.longitude+','+res.coords.latitude;
+					var url = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=' + res.coords.longitude + ',' + res.coords.latitude;
 					mui.ajax(url, {
 						dataType: 'json', //服务器返回json格式数据
 						type: 'post', //HTTP请求类型
@@ -133,8 +134,9 @@
 							'Content-Type': 'application/json'
 						},
 						success: function(data) {
+							plus.nativeUI.closeWaiting();
 							if(data.HeWeather6[0].status == "ok") {
-								var dz = data.HeWeather6[0].basic.admin_area +" "+data.HeWeather6[0].basic.parent_city+" "+data.HeWeather6[0].basic.location;
+								var dz = data.HeWeather6[0].basic.admin_area + " " + data.HeWeather6[0].basic.parent_city + " " + data.HeWeather6[0].basic.location;
 								var data = data.HeWeather6[0].now;
 								//赋值
 								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
@@ -154,7 +156,7 @@
 
 						},
 						error: function(xhr, type, errorThrown) {
-
+							plus.nativeUI.closeWaiting();
 						}
 					});
 				}, function(e) {});
@@ -181,7 +183,7 @@
 					cityPicker.show(function(items) {
 
 						//address = _getParam(items[2], 'text');
-						plus.nativeUI.showWaiting("等待中...");
+						plus.nativeUI.showWaiting("加载中...");
 						var urll = 'https://free-api.heweather.com/s6/weather/now?key=9aab750e479648829ea03e5646a3bc36&location=' + _getParam(items[2], 'text');
 						mui.ajax(urll, {
 							dataType: 'json', //服务器返回json格式数据
@@ -213,7 +215,7 @@
 
 							},
 							error: function(xhr, type, errorThrown) {
-
+								plus.nativeUI.closeWaiting();
 							}
 						});
 					});

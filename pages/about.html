@@ -43,7 +43,7 @@
 			</li>
 		</ul>
 		<!--底部版本号-->
-		<div class="ta-c pt-ab"><span class="smFontSize">当前版本：1.1.1</span></div>
+		<div class="ta-c pt-ab"><span class="smFontSize" id="version"></span></div>
 		<script src="../js/mui.min.js"></script>
 		<!--引用公用文件-->
 		<script src="../js/public.js"></script>
@@ -66,6 +66,8 @@
 					url: "about-support.html",
 					id: "about-support"
 				});
+				//获取当前应用版本号
+				document.getElementById('version').innerText = "软件版本："+plus.runtime.version;
 			})
 		</script>
 	</body>

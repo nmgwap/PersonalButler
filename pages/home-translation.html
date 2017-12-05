@@ -191,7 +191,7 @@
 				ratelPickerButton.addEventListener('tap', function(event) {
 					userPicker.show(function(items) {
 						document.getElementById('from').innerText = items[0].text;
-						document.getElementById('from1').innerText = items[0].text+':';
+						document.getElementById('from1').innerText = items[0].text + ':';
 						document.getElementById('ratelval').value = items[0].value;
 
 					});
@@ -201,7 +201,7 @@
 				raterPickerButton.addEventListener('tap', function(event) {
 					userPicker.show(function(items) {
 						document.getElementById('to').innerText = items[0].text;
-						document.getElementById('to1').innerText = items[0].text+":";
+						document.getElementById('to1').innerText = items[0].text + ":";
 						document.getElementById('raterval').value = items[0].value;
 					});
 				}, false);
@@ -232,6 +232,7 @@
 					var url = "http://api.fanyi.baidu.com/api/trans/vip/translate?q=" + val + "&from=" + ratel + "&to=" + rater + "&appid=20171130000101236&salt=121212&sign=" + stringMD5;
 					//判断是否为空
 					if(val != 'wo') {
+						plus.nativeUI.showWaiting("加载中...");
 						mui.ajax(url, {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'post', //HTTP请求类型
@@ -240,6 +241,7 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
+								plus.nativeUI.closeWaiting();
 								console.log(JSON.stringify(data))
 								try {
 									var dat = data.trans_result[0];
@@ -253,7 +255,7 @@
 								}
 							},
 							error: function(xhr, type, errorThrown) {
-
+								plus.nativeUI.closeWaiting();
 							}
 						});
 					} else {

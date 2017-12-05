@@ -123,6 +123,7 @@
 					var url = "http://www.zhaotool.com/v1/api/lt/e10adc3949ba59abbe56e057f20f883e/" + val;
 					//判断是否为空
 					if(val != '') {
+						plus.nativeUI.showWaiting("加载中...");
 						mui.ajax(url, {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'post', //HTTP请求类型
@@ -131,6 +132,7 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
+								plus.nativeUI.closeWaiting();
 								if(data.code == "0") {
 									var dat = data.data;
 									//赋值
@@ -148,7 +150,7 @@
 
 							},
 							error: function(xhr, type, errorThrown) {
-
+								plus.nativeUI.closeWaiting();
 							}
 						});
 					} else {

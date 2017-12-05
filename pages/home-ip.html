@@ -125,6 +125,7 @@
 					var url = "https://api01.aliyun.venuscn.com/ip?ip=" + val;
 					//判断是否为空
 					if(val != '') {
+						plus.nativeUI.showWaiting("加载中...");
 						mui.ajax(url, {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'get', //HTTP请求类型
@@ -134,6 +135,7 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
+								plus.nativeUI.closeWaiting();
 								console.log(JSON.stringify(data))
 								if(data.ret == "200") {
 									var res = data.data.result;
@@ -151,6 +153,7 @@
 								}
 							},
 							error: function(xhr, type, errorThrown) {
+								plus.nativeUI.closeWaiting();
 								plus.nativeUI.toast("查询错误，请稍后再试！");
 							}
 						});
