@@ -98,6 +98,8 @@
 .smFontSize {
 	font-size: 12px !important;
 }
+.xsFontSize{
+	font-size:10px !important;}
 
 .ta-c {
 	text-align: center;
@@ -316,8 +318,38 @@
 .wh-sk{
 	
 }
+.sixbox{
+	padding-left:10px;
+	padding-right:10px;
+	margin-top:40px;
+}
+.xsimg{
+	width:16px;
+	padding-top:4px;
+}
+.fgx{
+	padding:20px 20px;
+}
+.fgx>div{
+	border-top:1px solid #B7BCC4;
+}
+.daymsg{
+	padding-left:25px;
+	padding-right:25px;
+}
+.daylist{
+	height:35px;
+	line-height: 35px;
+}
+.listday{
+	width:16px;
+	position: absolute;
+	top:-2px;
+	left:-20px;
+	
+}
 .wh-img>img{
-	width:150px;
+	width:140px;
 }
 .ta-r{
 	text-align: right;

@@ -13,7 +13,7 @@
 		<style>
 			html,
 			body {
-				height: 100%;
+				background-color:#009be0 !important;
 			}
 		</style>
 	</head>
@@ -45,56 +45,126 @@
 					</div>
 				</div>
 				<!--详细信息-->
-				<div class="wh-list bs-bb mui-row" style="margin-top:40px;">
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-tgimg">体感温度</span>
+				<div class="sixbox mui-row c-ff">
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">体感</span>
 						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="fl"></span>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/tfwd.png" alt="" />
 						</div>
-					</div>
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-xdimg">相对湿度</span>
-						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="hum"></span>
+						<div class="ta-c">
+							<span class="smFontSize" id="fl"></span>
 						</div>
 					</div>
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-jsimg">降水量</span>
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">湿度</span>
 						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="pcpn"></span>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/sd.png" alt="" />
+						</div>
+						<div class="ta-c">
+							<span class="smFontSize" id="hum"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">降水量</span>
+						</div>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/jstj.png" alt="" />
+						</div>
+						<div class="ta-c">
+							<span class="smFontSize" id="pcpn"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">风向</span>
+						</div>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/fx.png" alt="" />
+						</div>
+						<div class="ta-c">
+							<span class="smFontSize" id="wind_dir"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">风力</span>
+						</div>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/fl.png" alt="" />
+						</div>
+						<div class="ta-c">
+							<span class="smFontSize" id="wind_sc"></span>
+						</div>
+					</div>
+					<div class="mui-col-xs-2 bs-bb">
+						<div class="ta-c">
+							<span class="smFontSize">风速</span>
+						</div>
+						<div class="ta-c">
+							<img class="xsimg" src="../images/fs.png" alt="" />
+						</div>
+						<div class="ta-c">
+							<span class="smFontSize" id="wind_spd"></span>
 						</div>
 					</div>
 				</div>
-				<!--详细信息-->
-				<div class="wh-list bs-bb mui-row" style="margin-top:10px;">
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-fximg">风向</span>
+				<!--分割线-->
+				<div class="fgx bs-bb">
+					<div></div>
+				</div>
+				<!--3-10天的天气-->
+				<div class="daymsg bs-bb">
+					<!--今天-->
+					<div class="bs-bb mui-row smFontSize daylist c-ff">
+						<div class="mui-col-xs-4">
+							<b>今天</b>
+							<span id="today"></span>
 						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="wind_dir"></span>
+						<div class="mui-col-xs-4 ta-c">
+							<span style="position: relative;">
+								<img class="listday" src="" alt=""  id="todayimg"/>
+							</span>
+							<span id="todaytext"></span>
+						</div>
+						<div class="mui-col-xs-4 ta-r">
+							<span id="todaywd"></span>
 						</div>
 					</div>
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-flimg">风力</span>
+					<!--明天-->
+					<div class="bs-bb mui-row smFontSize daylist c-ff">
+						<div class="mui-col-xs-4">
+							<b>明天</b>
+							<span id="tomorrow"></span>
 						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="wind_sc"></span>
+						<div class="mui-col-xs-4 ta-c">
+							<span style="position: relative;">
+								<img class="listday" src="" alt=""  id="tomorrowimg"/>
+							</span>
+							<span id="tomorrowtext"></span>
+						</div>
+						<div class="mui-col-xs-4 ta-r">
+							<span id="tomorrowwd"></span>
 						</div>
 					</div>
-					<div class="mui-col-xs-4 bs-bb ta-c">
-						<div class="c-33 ta-c bdFontSize mg-b">
-							<span class="wh-imgp wh-fsimg">风速</span>
+					<!--后天-->
+					<div class="bs-bb mui-row smFontSize daylist c-ff">
+						<div class="mui-col-xs-4">
+							<b>后天</b>
+							<span id="afterTomorrow"></span>
 						</div>
-						<div class="ta-c c-ff ttFontSize">
-							<span id="wind_spd"></span>
+						<div class="mui-col-xs-4 ta-c">
+							<span style="position: relative;">
+								<img class="listday" src="" alt=""  id="afterTomorrowimg"/>
+							</span>
+							<span id="afterTomorrowtext"></span>
+						</div>
+						<div class="mui-col-xs-4 ta-r">
+							<span id="afterTomorrowwd"></span>
 						</div>
 					</div>
 				</div>
@@ -149,6 +219,51 @@
 								document.getElementById('tmp').innerText = data.tmp;
 								document.getElementById('fl').innerText = data.fl;
 								document.getElementById('pcpn').innerText = data.pcpn;
+								//请求3-10天的天气信息
+								//请求数据
+								var url = 'https://free-api.heweather.com/s6/weather/forecast?key=9aab750e479648829ea03e5646a3bc36&location=' + res.coords.longitude + ',' + res.coords.latitude;
+								mui.ajax(url, {
+									dataType: 'json', //服务器返回json格式数据
+									type: 'post', //HTTP请求类型
+									timeout: 10000, //超时时间设置为10秒；
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									success: function(res1) {
+										plus.nativeUI.closeWaiting();
+										if(res1.HeWeather6[0].status == "ok") {
+											//今天
+											var todaylist = res1.HeWeather6[0].daily_forecast[0];
+											//赋值
+											document.getElementById('todayimg').setAttribute('src', '../images/weather1/' + todaylist.cond_code_d + '.png')
+											document.getElementById('today').innerText = todaylist.date;
+											document.getElementById('todaytext').innerText = todaylist.cond_txt_d;
+											document.getElementById('todaywd').innerText = todaylist.tmp_min+"~"+todaylist.tmp_max;
+											//明天
+											var tomorrow = res1.HeWeather6[0].daily_forecast[1];
+											//赋值
+											document.getElementById('tomorrowimg').setAttribute('src', '../images/weather1/' + tomorrow.cond_code_d + '.png')
+											document.getElementById('tomorrow').innerText = tomorrow.date;
+											document.getElementById('tomorrowtext').innerText = tomorrow.cond_txt_d;
+											document.getElementById('tomorrowwd').innerText = tomorrow.tmp_min+"~"+tomorrow.tmp_max;
+											//后天
+											var afterTomorrow = res1.HeWeather6[0].daily_forecast[2];
+											//赋值
+											document.getElementById('afterTomorrowimg').setAttribute('src', '../images/weather1/' + afterTomorrow.cond_code_d + '.png')
+											document.getElementById('afterTomorrow').innerText = afterTomorrow.date;
+											document.getElementById('afterTomorrowtext').innerText = afterTomorrow.cond_txt_d;
+											document.getElementById('afterTomorrowwd').innerText = afterTomorrow.tmp_min+"~"+afterTomorrow.tmp_max;
+
+											document.getElementById("results").className = "wt-hb bs-bb";
+										} else {
+											plus.nativeUI.toast("天气获取失败！");
+										}
+
+									},
+									error: function(xhr, type, errorThrown) {
+										plus.nativeUI.closeWaiting();
+									}
+								});
 								document.getElementById("results").className = "wt-hb bs-bb";
 							} else {
 								plus.nativeUI.toast("天气获取失败！");
