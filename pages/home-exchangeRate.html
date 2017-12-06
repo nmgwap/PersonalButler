@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
-	<body>
+	<body class="dp-n" id="body">
 		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff"></a>
 			<h1 class="mui-title titleBar-color">银行卡汇率</h1>
@@ -84,12 +84,15 @@
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function() {
+				plus.nativeUI.showWaiting("加载中...");
 				var topoffset = '45px';
 				if(plus.navigator.isImmersedStatusbar()) {
 					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
 				}
 				document.getElementById('header').style.height = (immersed + 44) + 'px';
 				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				plus.nativeUI.closeWaiting();
+				document.getElementById("body").className = "";
 				/*
 				 *选择框
 				 * 

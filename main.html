@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="css/public.css"/>
 	</head>
 
-	<body>
+	<body class="dp-n" id="body">
 		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
 			<h1 class="mui-title titleBar-color">首页</h1>
 		</header>
@@ -42,6 +42,7 @@
 				statusBarBackground: '#009be0'
 			});
 			mui.plusReady(function() {
+				plus.nativeUI.showWaiting("加载中...");
 				var topoffset = '45px';
 				if(plus.navigator.isImmersedStatusbar()){
 					topoffset = (Math.round(plus.navigator.getStatusbarHeight())+45)+'px';
@@ -104,6 +105,8 @@
 				var homeWv = plus.webview.create(subInfos[0].url, subInfos[0].id, subStyles);
 				mainWv.append(homeWv);
 				activeTab = subInfos[0].id;
+				plus.nativeUI.closeWaiting();
+				document.getElementById("body").className = "";
 
 				/**
 				 * 点击切换，动态创建其它webview；

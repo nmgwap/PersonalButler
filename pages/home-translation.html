@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/public.css" />
 	</head>
 
-	<body>
+	<body class="dp-n" id="body">
 		<header class="mui-bar mui-bar-nav titleBar-bgcolor" id="header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left c-ff c-ff"></a>
 			<h1 class="mui-title titleBar-color">翻译</h1>
@@ -73,7 +73,7 @@
 				<!---->
 				<div class="content-list c-a3 listFontSize mui-row">
 					<div class="mui-col-xs-3">
-						<span id="to1">英文：</span>
+						<span id="to1">中文：</span>
 					</div>
 					<div class="mui-col-xs-9">
 						<span id="rz2"></span>
@@ -89,12 +89,15 @@
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function() {
+				plus.nativeUI.showWaiting("加载中...");
 				var topoffset = '45px';
 				if(plus.navigator.isImmersedStatusbar()) {
 					topoffset = (Math.round(plus.navigator.getStatusbarHeight()) + 45) + 'px';
 				}
 				document.getElementById('header').style.height = (immersed + 44) + 'px';
 				document.querySelector('.mui-content').style.marginTop = (immersed) + 'px';
+				plus.nativeUI.closeWaiting();
+				document.getElementById("body").className = "";
 				/*
 				 *选择框
 				 * 
