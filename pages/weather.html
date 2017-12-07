@@ -208,7 +208,7 @@
 								var dz = data.HeWeather6[0].basic.admin_area + " " + data.HeWeather6[0].basic.parent_city + " " + data.HeWeather6[0].basic.location;
 								var data = data.HeWeather6[0].now;
 								//赋值
-								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
+								document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.svg')
 								document.getElementById('city').innerText = dz;
 								document.getElementById('cond_txt').innerText = data.cond_txt;
 								document.getElementById('wind_dir').innerText = data.wind_dir;
@@ -234,21 +234,21 @@
 											//今天
 											var todaylist = res1.HeWeather6[0].daily_forecast[0];
 											//赋值
-											document.getElementById('todayimg').setAttribute('src', '../images/weather1/' + todaylist.cond_code_d + '.png')
+											document.getElementById('todayimg').setAttribute('src', '../images/weather1/' + todaylist.cond_code_d + '.svg')
 											document.getElementById('today').innerText = todaylist.date;
 											document.getElementById('todaytext').innerText = todaylist.cond_txt_d;
 											document.getElementById('todaywd').innerText = todaylist.tmp_min + "~" + todaylist.tmp_max;
 											//明天
 											var tomorrow = res1.HeWeather6[0].daily_forecast[1];
 											//赋值
-											document.getElementById('tomorrowimg').setAttribute('src', '../images/weather1/' + tomorrow.cond_code_d + '.png')
+											document.getElementById('tomorrowimg').setAttribute('src', '../images/weather1/' + tomorrow.cond_code_d + '.svg')
 											document.getElementById('tomorrow').innerText = tomorrow.date;
 											document.getElementById('tomorrowtext').innerText = tomorrow.cond_txt_d;
 											document.getElementById('tomorrowwd').innerText = tomorrow.tmp_min + "~" + tomorrow.tmp_max;
 											//后天
 											var afterTomorrow = res1.HeWeather6[0].daily_forecast[2];
 											//赋值
-											document.getElementById('afterTomorrowimg').setAttribute('src', '../images/weather1/' + afterTomorrow.cond_code_d + '.png')
+											document.getElementById('afterTomorrowimg').setAttribute('src', '../images/weather1/' + afterTomorrow.cond_code_d + '.svg')
 											document.getElementById('afterTomorrow').innerText = afterTomorrow.date;
 											document.getElementById('afterTomorrowtext').innerText = afterTomorrow.cond_txt_d;
 											document.getElementById('afterTomorrowwd').innerText = afterTomorrow.tmp_min + "~" + afterTomorrow.tmp_max;
@@ -311,7 +311,7 @@
 								if(data.HeWeather6[0].status == "ok") {
 									var data = data.HeWeather6[0].now;
 									//赋值
-									document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.png')
+									document.getElementById('whimg').setAttribute('src', '../images/weather1/' + data.cond_code + '.svg')
 									document.getElementById('city').innerText = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " + _getParam(items[2], 'text');
 									document.getElementById('cond_txt').innerText = data.cond_txt;
 									document.getElementById('wind_dir').innerText = data.wind_dir;
@@ -337,21 +337,21 @@
 												//今天
 												var todaylist = res1.HeWeather6[0].daily_forecast[0];
 												//赋值
-												document.getElementById('todayimg').setAttribute('src', '../images/weather1/' + todaylist.cond_code_d + '.png')
+												document.getElementById('todayimg').setAttribute('src', '../images/weather1/' + todaylist.cond_code_d + '.svg')
 												document.getElementById('today').innerText = todaylist.date;
 												document.getElementById('todaytext').innerText = todaylist.cond_txt_d;
 												document.getElementById('todaywd').innerText = todaylist.tmp_min + "~" + todaylist.tmp_max;
 												//明天
 												var tomorrow = res1.HeWeather6[0].daily_forecast[1];
 												//赋值
-												document.getElementById('tomorrowimg').setAttribute('src', '../images/weather1/' + tomorrow.cond_code_d + '.png')
+												document.getElementById('tomorrowimg').setAttribute('src', '../images/weather1/' + tomorrow.cond_code_d + '.svg')
 												document.getElementById('tomorrow').innerText = tomorrow.date;
 												document.getElementById('tomorrowtext').innerText = tomorrow.cond_txt_d;
 												document.getElementById('tomorrowwd').innerText = tomorrow.tmp_min + "~" + tomorrow.tmp_max;
 												//后天
 												var afterTomorrow = res1.HeWeather6[0].daily_forecast[2];
 												//赋值
-												document.getElementById('afterTomorrowimg').setAttribute('src', '../images/weather1/' + afterTomorrow.cond_code_d + '.png')
+												document.getElementById('afterTomorrowimg').setAttribute('src', '../images/weather1/' + afterTomorrow.cond_code_d + '.svg')
 												document.getElementById('afterTomorrow').innerText = afterTomorrow.date;
 												document.getElementById('afterTomorrowtext').innerText = afterTomorrow.cond_txt_d;
 												document.getElementById('afterTomorrowwd').innerText = afterTomorrow.tmp_min + "~" + afterTomorrow.tmp_max;
